@@ -191,7 +191,7 @@ canvas {
   display: grid;
   place-items: center;
   padding: 20px;
-  background: rgba(5, 14, 11, 0.62);
+  background: rgba(5, 14, 11, 0.48);
   backdrop-filter: blur(8px);
   border-radius: var(--radius);
 }
@@ -259,8 +259,8 @@ canvas {
 
 .pad-btn[data-dir="up"] { grid-column: 2; grid-row: 1; }
 .pad-btn[data-dir="left"] { grid-column: 1; grid-row: 2; }
-.pad-btn[data-dir="down"] { grid-column: 2; grid-row: 2; }
 .pad-btn[data-dir="right"] { grid-column: 3; grid-row: 2; }
+.pad-btn[data-dir="down"] { grid-column: 2; grid-row: 3; }
 
 .mobile-hint {
   display: none;

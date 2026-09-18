@@ -1,8 +1,9 @@
 (() => {
   const COLS = 20;
   const ROWS = 20;
-  const BASE_INTERVAL = 170;
-  const MIN_INTERVAL = 62;
+  const BASE_INTERVAL = 220;
+  const MIN_INTERVAL = 70;
+  const START_DELAY = 700;
   const HIGH_SCORE_KEY = "snake-high-score";
 
   const canvas = document.getElementById("board");
@@ -87,10 +88,11 @@
 
   function resetGame() {
     const midY = Math.floor(ROWS / 2);
+    const midX = Math.floor(COLS / 2);
     state.snake = [
-      { x: 6, y: midY },
-      { x: 5, y: midY },
-      { x: 4, y: midY },
+      { x: midX, y: midY },
+      { x: midX - 1, y: midY },
+      { x: midX - 2, y: midY },
     ];
     state.dir = DIRS.right;
     state.queuedDir = null;
@@ -119,6 +121,7 @@
 
   function setStatus(next) {
     state.status = next;
+    document.body.dataset.gameStatus = next;
     btnPause.disabled = next !== "running" && next !== "paused";
     btnPause.textContent = next === "paused" ? "继续" : "暂停";
 
@@ -153,9 +156,9 @@
     const next = DIRS[name];
     if (!next) return;
     const current = state.queuedDir || state.dir;
+    if (state.status !== "running" && state.status !== "paused") return;
     if (next.x + current.x === 0 && next.y + current.y === 0) return;
     state.queuedDir = next;
-    if (state.status === "idle") startGame();
   }
 
   function eat() {
@@ -214,7 +217,7 @@
     setStatus("running");
     stopLoop();
     draw();
-    state.tickId = window.setTimeout(tick, interval());
+    state.tickId = window.setTimeout(tick, START_DELAY);
   }
 
   function togglePause() {
