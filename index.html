@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"
+    />
+    <meta name="theme-color" content="#07110d" />
+    <meta name="description" content="在浏览器里玩的贪吃蛇小游戏，支持键盘与触屏。" />
+    <title>贪吃蛇</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307110d'/%3E%3Ccircle cx='22' cy='32' r='10' fill='%233dff9a'/%3E%3Ccircle cx='40' cy='32' r='10' fill='%2326c77a'/%3E%3Ccircle cx='50' cy='24' r='6' fill='%23ff6b6b'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+    <div class="app">
+      <header class="hud">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">●</span>
+          <h1>贪吃蛇</h1>
+        </div>
+        <dl class="stats">
+          <div>
+            <dt>分数</dt>
+            <dd id="score">0</dd>
+          </div>
+          <div>
+            <dt>最高分</dt>
+            <dd id="high-score">0</dd>
+          </div>
+          <div>
+            <dt>速度</dt>
+            <dd id="speed">1</dd>
+          </div>
+        </dl>
+        <div class="hud-actions">
+          <button type="button" id="btn-pause" class="btn ghost" disabled>暂停</button>
+          <button type="button" id="btn-restart" class="btn ghost">重新开始</button>
+        </div>
+      </header>
+
+      <main class="stage">
+        <div class="board-wrap">
+          <canvas id="board" width="640" height="640" aria-label="贪吃蛇游戏区域"></canvas>
+          <div id="overlay" class="overlay">
+            <div class="panel">
+              <p id="overlay-kicker" class="kicker">准备就绪</p>
+              <h2 id="overlay-title">开始游戏</h2>
+              <p id="overlay-copy" class="copy">吃到红色果实得分，撞墙或咬到自己就会结束。</p>
+              <button type="button" id="btn-primary" class="btn primary">开始</button>
+              <p class="hint">方向键 / WASD 移动 · 空格暂停 · 回车开始</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="controls">
+        <div class="pad" aria-label="触屏方向键">
+          <button type="button" class="pad-btn" data-dir="up" aria-label="上">▲</button>
+          <button type="button" class="pad-btn" data-dir="left" aria-label="左">◀</button>
+          <button type="button" class="pad-btn" data-dir="down" aria-label="下">▼</button>
+          <button type="button" class="pad-btn" data-dir="right" aria-label="右">▶</button>
+        </div>
+        <p class="mobile-hint">滑动屏幕或点按方向键控制</p>
+      </footer>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
